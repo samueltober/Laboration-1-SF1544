@@ -1,8 +1,8 @@
 clear all
 clc
 
-h = 2; %Time step
-T = 30; %Maximum time
+h = 1; %Time step
+T = 40; %Maximum time
 N = T/h; %Number of Euler iterations
 M = 10; %Number of cars
 v_m = 25; %Speed limit
@@ -24,7 +24,7 @@ for i = 1:M
 end
 
 %Explicit Euler method
-for t = 1:N
+for t = 1:h:N
     for i = 1:M
         if i < M
             x(i,t+1) = x(i,t) + h.*f(x(i+1,t)-x(i,t));
@@ -60,8 +60,8 @@ title('Explicit Euler')
 
 % clear all
 
-h = 1; %Time step
-T = 60; %Maximum time
+h = 2; %Time step
+T = 40; %Maximum time
 N = T/h; %Number of Euler iterations
 M = 10; %Number of cars
 v_m = 25; %Speed limit
@@ -84,8 +84,8 @@ for i = 1:M
 end
 
 %Calculate X(1,40) for reference
-for t = 1:40
-    for i = M:-1:1
+for t = 1:N
+    for i = M:1:1
         if i == M
             x(i,t+1) = x(i,t) + h.*g;
         else
@@ -95,7 +95,7 @@ for t = 1:40
     end
 end
 
-%Implicit Euler method
+%Implicit Euler method with fixpoint
 for t = 1:N
     for i = M:-1:1
         if i == M
@@ -127,8 +127,8 @@ title('Implicit Euler with fixpoint')
 
 clear all
 
-h = 1.5; %Time step
-T = 60; %Maximum time
+h = 1; %Time step
+T = 40; %Maximum time
 N = T/h; %Number of Euler iterations
 M = 10; %Number of cars
 v_m = 25; %Speed limit
@@ -149,7 +149,7 @@ for i = 1:M
     x(i,1) = k*i;
 end
 
-%Implicit Euler method
+%Implicit Euler method without fixpoint
 for t = 1:N
     for i = M:-1:1
         if i == M

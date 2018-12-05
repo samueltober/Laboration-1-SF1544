@@ -6,6 +6,7 @@ function z = fixpoint(z0,x0,prevCar,h)
     while err >= tol %Loop until convergence
         ztemp = x0 + h * f(prevCar-z); %Fixpoint iteration
         err = abs(ztemp - z);  %Difference between iterations
+        disp(err);
         z = ztemp;
         clc
     end
